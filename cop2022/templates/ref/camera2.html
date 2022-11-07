@@ -131,8 +131,8 @@
         //촬영 버튼 클릭 리스너
         cameraTrigger.addEventListener("click", function(){
             
-            cameraSensor.width = cameraView.videoWidth; //640으로 정해져서 나오네?
-            cameraSensor.height = cameraView.videoHeight;
+            cameraSensor.width = 224; //cameraView.videoWidth; //640으로 정해져서 나오네?
+            cameraSensor.height = 224; //cameraView.videoHeight;
             cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
             //cameraOutput.src = cameraSensor.toDataURL("image/webp");
             cameraOutput.src = cameraSensor.toDataURL();
@@ -160,6 +160,7 @@
        	cameraUpload.addEventListener("click", function(){
             
             var imgDataUrl = cameraOutput.src;
+            //alert(cameraOutput.src);
              
             //alert ("url:" + imgDataUrl);
             //var imgDataUrl = $canvas.toDataURL('image/png');
@@ -170,13 +171,14 @@
             for (var i = 0; i < blobBin.length; i++) {
                 array.push(blobBin.charCodeAt(i));
             }
-
+            
+ㅌ
             var today = getToday();
             console.log("today:" + today);
             var fileName = 'image_' + today + ".jpg";
              
             var file = new File([new Uint8Array(array)], fileName, {type: 'image/jpeg'})
-            
+  
             var formdata = new FormData();
             formdata.append("file", file);
 

@@ -47,10 +47,12 @@ def upload_image():
     image_path = app.config['UPLOAD_FOLDER']
 
     model = load_model('./my_model.h5')
-    
+    model.predict()
+    #result = 0
     return jsonify({
         			"status": "success",
-         			"filename": filename
+         			"filename": filename,
+   #     			"result" : result,
     				}), 200
 
 if __name__ == "__main__":
