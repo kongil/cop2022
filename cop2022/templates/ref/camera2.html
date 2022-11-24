@@ -41,7 +41,7 @@
             height: 100%;
             /* 100%; */
             width: 100%;
-            /*object-fit: cover;*/
+            object-fit: cover;
             /* cover; */
         }
 
@@ -69,7 +69,6 @@
             justify-content: center;
             align-items: center;
         }
-
         .taken {
             height: 224px !important;
             width: 224px !important;
@@ -135,6 +134,7 @@
         //촬영 버튼 클릭 리스너
         cameraTrigger.addEventListener("click", function () {
 
+            /*
             cameraSensor.width = 224; // cameraView.videoWidth; //640으로 정해져서 나오네?
             cameraSensor.height = 224; //cameraView.videoHeight;
             cameraSensor.getContext("2d").drawImage(cameraView, 
@@ -146,7 +146,14 @@
             console.log(cameraSensor.height);
 
             upload();
-
+            */
+            cameraSensor.width = cameraView.videoWidth; //640으로 정해져서 나오네?
+            cameraSensor.height = cameraView.videoHeight;
+            cameraSensor.getContext("2d").drawImage(cameraView, 0, 0);
+            cameraOutput.src = cameraSensor.toDataURL("image/webp");
+            cameraOutput.classList.add("taken");
+            console.log(cameraSensor.height);
+            upload();
         });
 
         //현재 일자 및 시간

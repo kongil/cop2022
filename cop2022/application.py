@@ -100,12 +100,21 @@ def upload_image():
     print("upload_image start")
     
     file = request.files['file']
+    print(file)
     filename = secure_filename(file.filename)
-   
+    print(filename)
+    print("end")
 
     file.save(os.path.join(app.config['UPLOAD_FOLDER'] , filename))
 
-
+    return jsonify({
+                "status": "success",
+                "filename": filename,
+                "benign" : "1",
+                "malignant" : "1",
+                "normal" : "1"
+                }), 200
+"""
     image_path = app.config['UPLOAD_FOLDER']
     print("filename : " + image_path + "/" + filename)
     image_array = make_image_to_nparray(image_path, filename)
@@ -127,6 +136,7 @@ def upload_image():
         	        "malignant" : str(round(result[0][1] * 100, 2)),
                     "normal" : str(round(result[0][2] * 100, 2))
     				}), 200
+"""
 
 if __name__ == "__main__":
      app.run(host='0.0.0.0', port=int(sys.argv[1]))
